@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ArtShopPRM</string>
+    <string name="apiKey">AIzaSyADsjFXMaM6MxxrEiM4h3EP6o-f1OPqJOc</string>
+    <string name="googlepay_button_content_description">Google Pay</string>
+    <string name="intro_title">Step into \n<b>the world of shoes</b></string>
+    <string name="intro_text">Browse the <b>latest shoes</b> from top brands</string>
+</resources>
