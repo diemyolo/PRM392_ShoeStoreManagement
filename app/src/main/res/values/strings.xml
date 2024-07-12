@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">ShoeStoreProject</string>
+    <string name="title_activity_cart_fragment">CartFragment</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">Welcome !</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="intro_title">Step into \n<b>the world of shoes</b></string>
+    <string name="intro_text">Browse the <b>latest shoes</b> from top brands</string>
+    <string name="my_map_api_key">AIzaSyD4JKwKSarYdegrRhu-JsRnZSiXHkgVzwI</string>
+</resources>

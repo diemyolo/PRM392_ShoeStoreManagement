@@ -1,0 +1,23 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"  android:orientation="horizontal"
+    android:padding="8dp"
+    android:layout_marginBottom="8dp">
+
+    <ImageView android:id="@+id/imageAvatar"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/ic_avatar_placeholder"
+        android:contentDescription="@null" />
+
+    <TextView android:id="@+id/textMessage"
+        android:maxWidth="240dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:background="@drawable/edit_text_box"
+        android:textSize="12sp"
+        android:padding="8dp"
+        android:text="Hello, feel free to ask us what's on your mind."
+        android:layout_marginStart="16dp" />
+</LinearLayout>
