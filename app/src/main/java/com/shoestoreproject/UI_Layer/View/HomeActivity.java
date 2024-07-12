@@ -72,6 +72,7 @@ public class HomeActivity extends AppCompatActivity {
         darkOverlayOnClickListener();
         initMessage();
         sendBtnOnClickListener();
+        profileBtnOnClickListener();
     }
 
     private void toggleChatBox() {
@@ -216,6 +217,16 @@ public class HomeActivity extends AppCompatActivity {
                     }
                 }
             });
+    }
+    private void profileBtnOnClickListener(){
+        binding.profileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
+                intent.putExtra("email", userEmail);
+                startActivity(intent);
+            }
+        });
     }
 }
 

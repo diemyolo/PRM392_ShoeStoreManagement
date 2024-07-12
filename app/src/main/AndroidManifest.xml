@@ -6,22 +6,26 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="Shoe Store"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ShoeStoreProject"
         tools:targetApi="31">
         <activity
+            android:name=".UI_Layer.View.ProfileActivity"
+            android:exported="true" />
+        <activity
             android:name=".UI_Layer.View.PaymentActivity"
             android:exported="true" />
         <activity
             android:name=".UI_Layer.View.MapActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".UI_Layer.View.CartActivity"
             android:exported="true"
@@ -55,10 +59,10 @@
         </activity>
         <activity
             android:name=".UI_Layer.View.RegisterActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".UI_Layer.View.LoginActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".UI_Layer.View.MainActivity"
             android:exported="true" />
@@ -67,6 +71,5 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/my_map_api_key" />
     </application>
-
 
 </manifest>
