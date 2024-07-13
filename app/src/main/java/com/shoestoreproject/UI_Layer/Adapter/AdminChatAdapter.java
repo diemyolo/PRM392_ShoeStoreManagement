@@ -1,6 +1,7 @@
 package com.shoestoreproject.UI_Layer.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.shoestoreproject.Data_Layer.Model.Account;
 import com.shoestoreproject.Data_Layer.Model.Brand;
 import com.shoestoreproject.R;
+import com.shoestoreproject.UI_Layer.View.AdminSupportChatActivity;
 
 import java.util.List;
 
@@ -38,6 +40,15 @@ public class AdminChatAdapter extends RecyclerView.Adapter<AdminChatAdapter.Chat
     public void onBindViewHolder(@NonNull ChatViewHolder holder, int position) {
         Account currentItem = items.get(position);
         holder.usernameTextView.setText(currentItem.getUsername());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle item click here, for example:
+                Intent intent = new Intent(context, AdminSupportChatActivity.class); // Replace with your actual activity class
+                intent.putExtra("accountId", currentItem.getAccountId()); // Example extra data
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override
