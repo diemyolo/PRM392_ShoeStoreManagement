@@ -9,6 +9,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.shoestoreproject.Data_Layer.Model.Account;
 import com.shoestoreproject.Data_Layer.Model.Message;
@@ -98,22 +99,29 @@ public class AdminChatViewModel extends ViewModel {
 
     private void fetchUserAccountsBySenderIds(Set<String> senderIds) {
         List<Account> userAccounts = new ArrayList<>();
-        for (String senderId : senderIds) {
-            accountRef.child(senderId).addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    Account account = dataSnapshot.getValue(Account.class);
-                    if (account != null) {
+        DatabaseReference accountRef = FirebaseDatabase.getInstance().getReference("accounts");
+        Query query = accountRef.orderByChild("accountId");
+
+        ValueEventListener valueEventListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Account account = snapshot.getValue(Account.class);
+                    if (account != null && senderIds.contains(account.getAccountId())) {
                         userAccounts.add(account);
-                        _userAccount.setValue(userAccounts);
                     }
                 }
+                _userAccount.setValue(userAccounts);
+            }
 
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-                    // Handle onCancelled
-                }
-            });
-        }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle onCancelled
+            }
+        };
+
+        // Execute the query once for all senderIds
+        query.addListenerForSingleValueEvent(valueEventListener);
     }
+
 }

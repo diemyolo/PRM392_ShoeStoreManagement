@@ -78,7 +78,6 @@ public class HomeActivity extends AppCompatActivity {
         initMessage();
         sendBtnOnClickListener();
         profileBtnOnClickListener();
-        chatBubbleOnTouchListener();
     }
 
     private void toggleChatBox() {
@@ -241,36 +240,6 @@ public class HomeActivity extends AppCompatActivity {
                 Intent intent = new Intent(HomeActivity.this, ProfileActivity.class);
                 intent.putExtra("email", userEmail);
                 startActivity(intent);
-            }
-        });
-    }
-    private void chatBubbleOnTouchListener(){
-        binding.chatBubble.setOnTouchListener(new View.OnTouchListener() {
-            @SuppressLint("ClickableViewAccessibility")
-            @Override
-            public boolean onTouch(View view, MotionEvent event) {
-                switch (event.getActionMasked()) {
-                    case MotionEvent.ACTION_DOWN:
-                        dX = view.getX() - event.getRawX();
-                        dY = view.getY() - event.getRawY();
-                        lastAction = MotionEvent.ACTION_DOWN;
-                        break;
-
-                    case MotionEvent.ACTION_MOVE:
-                        view.setX(event.getRawX() + dX);
-                        view.setY(event.getRawY() + dY);
-                        lastAction = MotionEvent.ACTION_MOVE;
-                        break;
-
-                    case MotionEvent.ACTION_UP:
-                        if (lastAction == MotionEvent.ACTION_DOWN)
-                            view.performClick();
-                        break;
-
-                    default:
-                        return false;
-                }
-                return true;
             }
         });
     }
