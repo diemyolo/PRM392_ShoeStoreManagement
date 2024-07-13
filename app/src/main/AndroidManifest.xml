@@ -18,6 +18,9 @@
         android:theme="@style/Theme.ShoeStoreProject"
         tools:targetApi="31">
         <activity
+            android:name=".UI_Layer.View.OrderActivity"
+            android:exported="false" />
+        <activity
             android:name=".UI_Layer.View.AdminActivity"
             android:exported="false" />
         <activity

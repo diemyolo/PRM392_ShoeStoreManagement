@@ -64,6 +64,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
         initBanner();
+        initOrder();
         initBrand();
         initPopular();
         initCartMenu();
@@ -125,6 +126,15 @@ public class HomeActivity extends AppCompatActivity {
         });
     }
 
+    private void initOrder() {
+        binding.orderBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(HomeActivity.this, OrderActivity.class));
+            }
+        });
+    }
+
     private void initMapMenu() {
         binding.mapBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,6 +152,7 @@ public class HomeActivity extends AppCompatActivity {
         });
         viewModel.loadBanners();
     }
+
 
     private void banners(List<Slider> images) {
         binding.viewPageSlider.setAdapter(new SliderAdapter(images, binding.viewPageSlider));

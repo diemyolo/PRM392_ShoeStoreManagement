@@ -16,6 +16,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.shoestoreproject.Data_Layer.Model.Account;
 import com.shoestoreproject.Data_Layer.Model.Brand;
 import com.shoestoreproject.Data_Layer.Model.Message;
+import com.shoestoreproject.Data_Layer.Model.Order;
 import com.shoestoreproject.Data_Layer.Model.Shoe;
 import com.shoestoreproject.Data_Layer.Model.Slider;
 
@@ -45,6 +46,9 @@ public class MainViewModel extends ViewModel {
 
     public MutableLiveData<List<Message>> _messageList = new MutableLiveData<>();
     public LiveData<List<Message>> messageList = _messageList;
+    private MutableLiveData<List<Order>> _orders = new MutableLiveData<>();
+    public LiveData<List<Order>> orders = _orders;
+
     public void loadBanners() {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         DatabaseReference ref = firebaseDatabase.getReference("banner");
@@ -303,5 +307,30 @@ public class MainViewModel extends ViewModel {
             }
         });
     }
+
+
+    public void loadOrders() {
+        DatabaseReference ref = firebaseDatabase.getReference("orders");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                List<Order> orderList = new ArrayList<>();
+                for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+                    Order order = childSnapshot.getValue(Order.class);
+                    if (order != null) {
+                        orderList.add(order);
+                    }
+                }
+                _orders.setValue(orderList);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Handle error
+            }
+        });
+    }
+
+
 
 }

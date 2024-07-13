@@ -5,12 +5,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.view.View;
+import android.widget.Toast;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.shoestoreproject.Data_Layer.Helper.ChangeNumberItemListener;
 import com.shoestoreproject.Data_Layer.Helper.ManagementCart;
+import com.shoestoreproject.Data_Layer.Model.Order;
 import com.shoestoreproject.Data_Layer.ZaloPayConfig.Api.CreateOrder;
 import com.shoestoreproject.UI_Layer.Adapter.CartAdapter;
 import com.shoestoreproject.databinding.ActivityCartBinding;
@@ -106,7 +111,8 @@ public class CartActivity extends AppCompatActivity {
 
                             @Override
                             public void onPaymentSucceeded(String s, String s1, String s2) {
-
+                                managmentCart.clearCart();
+                                createOrder();
                                 Intent intent1 = new Intent(CartActivity.this, PaymentActivity.class);
                                 intent1.putExtra("result", "Thanh toán thành công");
                                 startActivity(intent1);
@@ -134,6 +140,29 @@ public class CartActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void createOrder() {
+        DatabaseReference ordersRef = FirebaseDatabase.getInstance().getReference("orders");
+
+        String orderId = ordersRef.push().getKey();
+        String totalText = binding.totalTxt.getText().toString();
+        String numericValue = totalText.replaceAll("\\$", "");
+        double totalPrice = Double.parseDouble(numericValue);
+        String checkoutInfo = "Some checkout info";
+        String accountId = "Some account ID";
+        String status = "Pending";
+
+        Order order = new Order(orderId, totalPrice, checkoutInfo, accountId, status);
+
+        ordersRef.child(orderId).setValue(order).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Toast.makeText(CartActivity.this, "Order created successfully", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(CartActivity.this, "Failed to create order", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
