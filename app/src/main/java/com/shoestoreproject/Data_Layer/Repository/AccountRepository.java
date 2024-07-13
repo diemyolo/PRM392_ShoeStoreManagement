@@ -40,7 +40,7 @@ public class AccountRepository {
                     }
                     loginResult.setValue("Incorrect email or password!");
                 } else {
-                    loginResult.setValue("Error fetching data!!");
+                    loginResult.setValue("User not found!!");
                 }
             }
 
