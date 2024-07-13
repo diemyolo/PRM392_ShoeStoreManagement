@@ -14,7 +14,6 @@ public class FirebaseDataSource {
 
     public FirebaseDataSource() {
         firebaseDatabase = FirebaseDatabase.getInstance();
-        firebaseDatabase.setPersistenceEnabled(true);
     }
 
     public FirebaseDatabase getFirebaseDatabase() {

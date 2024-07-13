@@ -47,7 +47,6 @@ public class RegisterActivity extends AppCompatActivity {
                     Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
                     intent.putExtra("email", email);
                     startActivity(intent);
-                    finish();
                 } else {
                     Toast.makeText(RegisterActivity.this, registerResult, Toast.LENGTH_SHORT).show();
                 }
