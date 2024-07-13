@@ -20,8 +20,8 @@ import com.shoestoreproject.databinding.ActivityProfileBinding;
 
 public class AdminActivity extends AppCompatActivity {
     private ActivityAdminBinding binding;
-    private String userEmail;
-    private AdminViewModel viewModel = new AdminViewModel();;
+    private String adminEmail;
+    private AdminViewModel viewModel = new AdminViewModel();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +32,7 @@ public class AdminActivity extends AppCompatActivity {
         Intent intent = getIntent();
 
         if (intent != null && intent.hasExtra("email")) {
-            userEmail = intent.getStringExtra("email");
+            adminEmail = intent.getStringExtra("email");
             viewModel.account.observe(this, new Observer<Account>() {
                 @Override
                 public void onChanged(Account account) {
@@ -41,9 +41,10 @@ public class AdminActivity extends AppCompatActivity {
                     }
                 }
             });
-            viewModel.getAccountInfo(userEmail);
+            viewModel.getAccountInfo(adminEmail);
         }
         buttonLogoutOnClickListener();
+        chatBtnOnClickListener();
     }
 
     public void buttonLogoutOnClickListener(){
@@ -51,6 +52,17 @@ public class AdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(AdminActivity.this, LoginActivity.class));
+            }
+        });
+    }
+
+    public void chatBtnOnClickListener(){
+        binding.chatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AdminActivity.this, AdminChatActivity.class);
+                intent.putExtra("email", adminEmail);
+                startActivity(intent);
             }
         });
     }

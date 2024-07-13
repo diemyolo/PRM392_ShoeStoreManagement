@@ -11,7 +11,7 @@
         android:contentDescription="@null" />
 
     <TextView android:id="@+id/textMessage"
-        android:maxWidth="240dp"
+        android:maxWidth="224dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@android:color/black"
