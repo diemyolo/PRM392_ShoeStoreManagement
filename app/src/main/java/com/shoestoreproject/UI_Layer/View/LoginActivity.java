@@ -37,10 +37,14 @@ public class LoginActivity extends AppCompatActivity {
             String password = passwordTxt.getText().toString().trim();
 
             loginViewModel.login(email, password).observe(this, loginResult -> {
-                if (loginResult.equals("Login successfully")) {
+                if (loginResult.equals("user")) {
                     Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
                     intent.putExtra("email", email);
                     startActivity(intent);
+                }else if (loginResult.equals("admin")) {
+                        Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+                        intent.putExtra("email", email);
+                        startActivity(intent);
                 } else {
                     Toast.makeText(LoginActivity.this, loginResult, Toast.LENGTH_SHORT).show();
                 }

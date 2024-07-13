@@ -30,7 +30,11 @@ public class AccountRepository {
                     for (DataSnapshot snapShot : dataSnapshot.getChildren()){
                         Account account = snapShot.getValue(Account.class);
                         if (account != null && account.getPassword().equals(password)) {
-                            loginResult.setValue("Login successfully");
+                            if(account.getRole().equals("admin")){
+                                loginResult.setValue("admin");
+                            }else {
+                                loginResult.setValue("user");
+                            }
                             return;
                         }
                     }

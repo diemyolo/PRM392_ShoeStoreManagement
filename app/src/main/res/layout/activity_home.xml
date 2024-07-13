@@ -384,7 +384,7 @@
     <!-- Pop-up Chat Box -->
     <LinearLayout
         android:id="@+id/popUpChatContainer"
-        android:layout_width="400dp"
+        android:layout_width="match_parent"
         android:layout_height="560dp"
         android:orientation="vertical"
         android:background="@drawable/chat_bubble_background"
@@ -397,6 +397,8 @@
         android:paddingStart="24dp"
         android:paddingEnd="24dp"
         android:paddingTop="20dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         android:paddingBottom="20dp">
 
         <TextView
@@ -427,8 +429,6 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_marginStart="48dp"
-            android:layout_marginEnd="48dp"
             android:layout_height="0dp"
             android:layout_weight="1">
 

@@ -8,7 +8,6 @@ public class ShoeStoreApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        // Initialize Firebase and set persistence enabled before any other usage
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
     }
 }
